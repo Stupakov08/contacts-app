@@ -1,15 +1,31 @@
-export const provide = (data, time = (Math.round(Math.random() * 1500) + 1)) => {
-	return new window.Promise((resolve) => window.setTimeout(() => {
-		resolve(data);
-	}, time));
+import { API_URL, API_VERSION, API_CONTACTS_SEED_KEY } from 'constants/env';
+
+export const contactsUrl = ({ options }) => {
+  options = {
+    results: 126,
+    seed: API_CONTACTS_SEED_KEY,
+    ...options,
+  };
+
+  const query = Object.keys(options)
+    .map((k) => `${k}=${options[k]}`)
+    .join('&');
+
+  return `${API_URL}/api/${API_VERSION}/?${query}`;
 };
 
-export const provideWithRandomError = (data, time = Math.random()) => {
-	return new window.Promise((resolve, reject) => window.setTimeout(() => {
-		if (time > 0.75) {
-			reject(new Error('Oops! Something went wrong'));
-		} else {
-			resolve(data);
-		}
-	}, time));
+export const parseStatus = async (res) => {
+  const status = res.status;
+  res = await res.json();
+
+  return new Promise((resolve, reject) => {
+    status >= 200 && status < 300 ? resolve(res) : reject({ status, res });
+  });
+};
+
+export const provide = (url, options) => {
+  return fetch(url, {
+    method: 'GET',
+    ...options,
+  }).then(parseStatus);
 };

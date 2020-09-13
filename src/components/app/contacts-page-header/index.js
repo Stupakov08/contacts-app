@@ -1,0 +1,1 @@
+export { ContactsPageHeader } from './container';

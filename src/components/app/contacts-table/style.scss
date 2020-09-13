@@ -1,0 +1,25 @@
+.copiable-left {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  > div {
+    min-width: 20px;
+  }
+  > a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &--bold {
+    font-weight: 500;
+  }
+}
+.table-mode {
+  overflow: auto;
+  .ant-table-tbody > tr > td {
+    padding: 8px;
+  }
+  .ant-typography {
+    margin: 0;
+  }
+}

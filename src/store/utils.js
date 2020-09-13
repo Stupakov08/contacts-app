@@ -4,9 +4,9 @@
  * @returns {function} actionCreator
  */
 export function createAction(type) {
-	const actionCreator = (payload = {}) => ({ type, payload });
-	actionCreator.type = type;
-	return actionCreator;
+  const actionCreator = (payload = {}) => ({ type, payload });
+  actionCreator.type = type;
+  return actionCreator;
 }
 
 /**
@@ -16,11 +16,9 @@ export function createAction(type) {
  * @returns {function(*=, *)}
  */
 export function createReducer(initialState, reducerMap) {
-	return (state = initialState, action) => {
-		const reducer = reducerMap[action.type];
+  return (state = initialState, action) => {
+    const reducer = reducerMap[action.type];
 
-		return reducer
-			? reducer(state, action)
-			: state;
-	};
+    return reducer ? reducer(state, action) : state;
+  };
 }

@@ -1,5 +1,5 @@
-// import { createAction } from '../utils';
+//import { createAction } from '../utils';
 
 export const OActionTypes = {
-	prefix: '@app',
+  prefix: '@app',
 };

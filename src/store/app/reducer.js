@@ -1,10 +1,6 @@
-import { createReducer } from '../utils';
-// import { OActionTypes as app } from './actions';
+import { combineReducers } from 'redux';
+import * as reducers from './export-reducers';
 
-export const initialState = {};
-
-export const reducer = createReducer(initialState, {
-	'@@router/LOCATION_CHANGE'(state) {
-		return state;
-	},
+export const reducer = combineReducers({
+  ...reducers,
 });
